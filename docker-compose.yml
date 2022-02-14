@@ -10,7 +10,7 @@ services:
     ports:
       - "5432:5432"
   covidexercise:
-    image: "sri2441/exercise:1.0"
+    image: "sri2441/exercise:latest"
     container_name: "reporting"
     depends_on:
       - postgres
@@ -19,6 +19,7 @@ services:
     ports:
       - "9000:9000"
 
+# for testing
   pgadmin:
     image: dpage/pgadmin4
     links:

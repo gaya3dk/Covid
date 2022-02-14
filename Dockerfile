@@ -1,4 +1,4 @@
-# Dockerfile References: https://docs.docker.com/engine/reference/builder/
+# Docker image with PySpark and dependencies (not slim)
 FROM gcr.io/datamechanics/spark:platform-3.1-dm14
 
 ENV PYSPARK_MAJOR_PYTHON_VERSION=3
