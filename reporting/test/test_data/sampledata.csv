@@ -1,0 +1,5 @@
+﻿location,continent,new_cases,total_cases,people_fully_vaccinated,date,population
+Australia,Oceania,100,10000,2000,03/01/2022,1994824
+NewZealand,Oceania,100,500,100,03/01/2022,12842352
+China,Asia,0,300,100,01/01/2022,124124
+Denmark,Europe,100,500,100,10/01/2022,124154
