@@ -68,8 +68,8 @@ class DataAnalysis:
         print("###################################################################\n")
 
         # Filter out continent and country with null values
-        valid_df = self.df\
-            .filter(self.df.continent.isNotNull())\
+        valid_df = self.df \
+            .filter(self.df.continent.isNotNull()) \
             .filter(self.df.location.isNotNull())
 
         # pre-calculate columns containing week of year and year
@@ -83,17 +83,17 @@ class DataAnalysis:
         df_with_4weeks = df_with_week.filter(col('date') >= lit(today - timedelta(days=35)))
 
         # aggregate new cases per week
-        new_cases = df_with_4weeks\
-            .groupBy('week_of_year', 'week', 'continent')\
+        new_cases = df_with_4weeks \
+            .groupBy('week_of_year', 'week', 'continent') \
             .agg(sum('new_cases').cast('bigint').alias("new_cases"))
 
         # calculate week over week % increase or decrease in new cases using Window function
         result_df = DataAnalysis.calculate_lag(new_cases)
 
         # Build report per continent and weekly increase/decrease in new cases for current and last 3 weeks
-        report_df = result_df\
-            .groupBy("continent")\
-            .pivot("week_of_year")\
+        report_df = result_df \
+            .groupBy("continent") \
+            .pivot("week_of_year") \
             .agg(format_number(max('weekly_trend_percentage'), 2).alias("weekly_trend_percentage"))
 
         return report_df
@@ -103,13 +103,14 @@ class DataAnalysis:
         """
         Calculate change in new_cases column between weeks
         :param input_df: input spark dataframe to transform
-        :returns output_df : table containing weekly trend calculated based on window function over every 2 consecutive weeks
+        :returns output_df : table containing weekly trend calculated based on window function
+                             over every 2 consecutive weeks for last 3 weeks
         """
         df_lag = input_df \
             .withColumn('prev_week_cases', lag(input_df['new_cases'])
                         .over(Window.partitionBy("continent").orderBy('week')))
         output_df = df_lag \
-            .filter(col('prev_week_cases').isNotNull())\
+            .filter(col('prev_week_cases').isNotNull()) \
             .withColumn('weekly_trend_percentage',
                         ((df_lag['new_cases'] - df_lag['prev_week_cases']) / df_lag['prev_week_cases']) * 100)
 
