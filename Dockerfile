@@ -15,3 +15,5 @@ RUN pip3 install -r requirements.txt
 
 CMD ["sh", "-c", "python -m reporting"]
 #CMD ["sh", "-c", "sleep 100000"]
+
+

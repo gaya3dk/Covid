@@ -1,4 +1,7 @@
 import os
+import time
+
+from pyspark.sql.utils import AnalysisException
 
 
 class DataIO:
@@ -9,8 +12,8 @@ class DataIO:
         try:
             path_to_csv = os.path.join(path + filename)
             return spark.read.option("header", True).option('delimiter', ',').format('csv').load(path_to_csv)
-        except FileNotFoundError:
-            raise FileNotFoundError("Invalid path or file not found")
+        except Exception as e:
+            raise Exception("Invalid path or file not found")
 
     @staticmethod
     def write_df_to_jdbc(connection, df):
@@ -20,7 +23,8 @@ class DataIO:
                       table='covid_master_data',
                       mode='overwrite',
                       properties=connection)
-            print("Data has been written to postgres table.....")
+            time.sleep(5)
+            print("\nData has been written to postgres table.....")
         except ConnectionError as e:
             raise ConnectionError(e)
 

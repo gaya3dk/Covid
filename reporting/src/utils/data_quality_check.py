@@ -3,7 +3,8 @@ from pyspark.sql.functions import col, date_sub, current_date, max, lit
 
 
 class DataQualityCheck:
-    """ Class to implement data quality checks on input spark dataframe """
+    """ Class to implement data quality checks on input spark dataframe, checks are not exhaustive """
+
     @staticmethod
     def expect_non_empty_data(df: DataFrame):
         """
@@ -21,9 +22,8 @@ class DataQualityCheck:
        :param df: input dataframe
        :raises ValueError
        """
-        if df.select('date').count() == 0:
-            raise ValueError(f"Dataset doesn't have date column")
-
+        if 'date' not in [df.columns]:
+            raise Exception(f"Dataset doesn't have date column")
 
     @staticmethod
     def expect_fresh_data(df: DataFrame, freshness_days=1):

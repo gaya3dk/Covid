@@ -10,8 +10,10 @@ services:
     ports:
       - "5432:5432"
   covidexercise:
-    image: "covid:latest"
+    image: "sri2441/exercise:1.0"
     container_name: "reporting"
+    depends_on:
+      - postgres
     environment:
       PG_PWD: ${PG_PWD}
     ports:
