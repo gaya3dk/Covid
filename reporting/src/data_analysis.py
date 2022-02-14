@@ -64,7 +64,7 @@ class DataAnalysis:
         :returns report_df : table containing weekly trend of new cases split by country
         """
         print("###################################################################\n")
-        print("Week on Week trend of new cases from last 3 weeks by continent\n")
+        print("Weekly trend in percentage of new cases from last 3 weeks by continent\n")
         print("###################################################################\n")
 
         # Filter out continent and country with null values

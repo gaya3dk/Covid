@@ -1,6 +1,10 @@
 # Introduction
 
-Covid  is a spark application that reads and writes data from Postgres table and outputs 3 reports to console
+Covid  is a spark application that reads and writes data from Postgres table and outputs 3 reports to console.
+
+- Which are the top 5 vaccinated countries and their vaccination rates  - returns %age of vaccination by population in one view
+- Week on week trend of new cases between current and last 3 weeks - returns % age increase of decrease in new cases 
+
 
 ## Repository structure
 

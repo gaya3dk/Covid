@@ -22,7 +22,7 @@ class DataQualityCheck:
        :param df: input dataframe
        :raises ValueError
        """
-        if 'date' not in [df.columns]:
+        if 'date' not in df.columns:
             raise Exception(f"Dataset doesn't have date column")
 
     @staticmethod
