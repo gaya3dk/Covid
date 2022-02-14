@@ -47,6 +47,6 @@ class DataQualityCheck:
         max_date = df.agg(max(df.date)).collect()[0][0]
         df = df \
             .filter(df.date == lit(max_date)) \
-            .filter((col('total_cases') < 0) | (col('new_cases') < 0))
+            .filter((col('total_cases') < 0) | (col('new_cases') < 0) | (col('population') < 0))
         if df.count() != 0:
-            raise ValueError(f"Number of cases or New cases cannot be negative")
+            raise ValueError(f"Number of cases or New cases or Population cannot be negative")

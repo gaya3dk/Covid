@@ -111,6 +111,6 @@ class DataAnalysis:
         output_df = df_lag \
             .filter(col('prev_week_cases').isNotNull())\
             .withColumn('weekly_trend_percentage',
-                        ((df_lag['new_cases'] - df_lag['prev_week_cases']) / df_lag['new_cases']) * 100)
+                        ((df_lag['new_cases'] - df_lag['prev_week_cases']) / df_lag['prev_week_cases']) * 100)
 
         return output_df

@@ -19,6 +19,7 @@ services:
     ports:
       - "9000:9000"
 
+# for testing
   pgadmin:
     image: dpage/pgadmin4
     links:
