@@ -26,11 +26,11 @@ class DataQualityCheck:
             raise Exception(f"Dataset doesn't have date column")
 
     @staticmethod
-    def expect_fresh_data(df: DataFrame, freshness_days=1):
+    def expect_fresh_data(df: DataFrame, freshness_days=2):
         """
-         Utility method to check freshness of dataset, default is 1
+         Utility method to check freshness of dataset, default is 2
         :param df: input dataframe
-        :param freshness_days: number of days delay in data freshness, default is 1
+        :param freshness_days: number of days delay in data freshness, default is 2
         :raises ValueError
         """
         df = df.filter(col('date') >= date_sub(current_date(), freshness_days))
